@@ -1,0 +1,4 @@
+https://app.blanxer.com/dashboard
+https://shopliley.com/collections/new-arrivals
+https://docs.khalti.com/khalti-epayment/
+https://stackoverflow.com/questions/63944779/django-tenant-schemas-how-to-drop-a-schema-within-utils-pyo

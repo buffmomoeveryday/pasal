@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% if information.favicon %}
+            <link rel="icon" href="{{ information.favicon.url }}" type="image/png">
+        {% else %}
+            <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+        {% endif %}
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"
+              rel="stylesheet" />
+        <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+        <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+        <script defer
+                src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <link rel="stylesheet"
+              type="text/css"
+              href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <title>
+            {% block title %}
+            {% endblock title %}
+        </title>
+    </head>
+    <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+          onload="displayDjangoMessages()">
+        {% include "partials/ecommerce_banner.html" %}
+        {% include "partials/messages.html" %}
+        {% include "partials/ecommerce_navbar.html" %}
+        <main class="container mx-auto"
+              _="on load if #cart-count send updateCart to #cart-count">
+            {% block content %}
+            {% endblock content %}
+            {% include "partials/ecommerce_footer.html" %}
+        </main>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,104 @@
+{% extends "dashboard/tenant_base.html" %}
+{% load tailwind_filters %}
+{% load widget_tweaks %}
+{% block content %}
+    <style>
+/* Custom CSS */
+.resizer {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    resize: horizontal;
+    overflow: hidden;
+}
+
+.resizer > .resized {
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.ugly {
+    border-color: pink;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .grid-cols-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Additional styles for elements */
+/* Adjust as needed */
+    </style>
+    <!-- Include jQuery -->
+    <div class="grid grid-cols-2 gap-4" id="ugly">
+        <div class="resizer ugly">
+            <!-- Content for the first column goes here -->
+            <iframe class="resized"
+                    id="resizableDiv"
+                    src="http://{{ tenant }}.localhost:8000"
+                    frameborder="5"
+                    height="1000"></iframe>
+        </div>
+        <div>
+            {% if not product_exists %}
+                <div id="alert-4"
+                     class="flex items-center p-4 mb-4 text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300"
+                     role="alert">
+                    <svg class="flex-shrink-0 w-4 h-4"
+                         aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg"
+                         fill="currentColor"
+                         viewBox="0 0 20 20">
+                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    <span class="sr-only">Info</span>
+                    <div class="ms-3 text-sm font-medium">
+                        You haven't added a product
+                        <a href="{% url 'pasal_create_product' %}"
+                           class="font-semibold underline hover:no-underline">Create Product</a>.
+                        Click here to add.
+                    </div>
+                </div>
+            {% endif %}
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="topbar"
+                       class="block mb-2 text-sm font-bold text-gray-900 dark:text-white">Top Bar Text:*</label>
+                {% render_field topbar_form.text rows="1" id="topbar" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write the items in topbar here" %}
+                <br>
+                <hr>
+                <br>
+                <!-- image banner -->
+                {{ image_with_text_form | crispy }}
+                <br>
+                <hr>
+                <br>
+                <label for="topbar"
+                       class="block mb-2 text-sm font-bold text-gray-900 dark:text-white">Featured Products</label>
+                <!-- featured products -->
+                {{ featured_products_form }}
+                <br>
+                <hr>
+                <br>
+                <!-- footer -->
+                {{ footer_form | crispy }}
+                <button type="submit"
+                        id="submit-button"
+                        class="w-full text-white bg-pink-600 hover:bg-pink-700 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800">
+                    Update the UI
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+{% block script %}
+    <script>
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+    </script>
+{% endblock script %}

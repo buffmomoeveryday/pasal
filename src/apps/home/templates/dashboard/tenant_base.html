@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+      <head>
+            <meta name="title" content="Google">
+            <meta name="description"
+                  content="Search the world's information, including webpages, images, videos and more. Google has many special features to help you find exactly what you're looking for.">
+            <meta property="og:type" content="website">
+            <meta property="og:url" content="https://www.google.com/">
+            <meta property="og:title" content="Google">
+            <meta property="og:description"
+                  content="Search the world's information, including webpages, images, videos and more. Google has many special features to help you find exactly what you're looking for.">
+            <meta property="og:image" content="">
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>
+                  {% block title %}
+                  {% endblock title %}
+            </title>
+            {% comment %} quill {% endcomment %}
+            <script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script>
+            {% comment %} tailwind {% endcomment %}
+            <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+                  rel="stylesheet">
+            <link rel="stylesheet"
+                  href="https://unpkg.com/tailwindcss@2.2.19/dist/utilities.min.css">
+            <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/typography/src/index.min.js"></script>
+            {% comment %} flowbite {% endcomment %}
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"
+                  rel="stylesheet" />
+            <script src="https://cdn.jsdelivr.net/npm/flowbite-typography@1.0.3/src/index.min.js"></script>
+            <link rel="stylesheet"
+                  href="https://cdn.jsdelivr.net/npm/flowbite-typography@1.0.3/dist/typography.min.css"
+                  integrity="sha256-0PTpzcFyf4L2OLKO8+xCBFK9ZABMRPVkxu6y0yM2RiU="
+                  crossorigin="anonymous">
+            {% comment %} toastify {% endcomment %}
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+            <link rel="stylesheet"
+                  type="text/css"
+                  href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+            {% comment %} hyperscript {% endcomment %}
+            <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+            {% comment %} htmx {% endcomment %}
+            <script src="https://unpkg.com/htmx.org@1.9.9"></script>
+            {% comment %} jquery {% endcomment %}
+            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+            {% comment %} select2 {% endcomment %}
+            <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+                  rel="stylesheet" />
+            <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+            {% comment %} charts plotly {% endcomment %}
+            <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            {% block style %}
+            {% endblock style %}
+      </head>
+      {% include "dashboard/partials/sidebar.html" %}
+      <body onload="displayDjangoMessages()">
+            <div class="p-4 sm:ml-64 mt-14">
+                  <main>
+                        {% include "partials/messages.html" %}
+                        {% block content %}
+                        {% endblock content %}
+                  </main>
+            </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+      </body>
+      {% block script %}
+      {% endblock script %}
+      <script></script>
+</html>

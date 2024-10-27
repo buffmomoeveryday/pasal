@@ -1,0 +1,23 @@
+{% extends "ecommerce_base.html" %}
+{% load util_tags %}
+{% block content %}
+    <style>
+        table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            table th,
+            table td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+            table th {
+                background-color: #f2f2f2;
+            }
+            table tbody tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+    </style>
+    <div class="container mx-auto">{{ information.about_us | safe }}</div>
+{% endblock content %}

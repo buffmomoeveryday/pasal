@@ -1,0 +1,20 @@
+{% load humanize %}
+<a href="{% url 'product-detail' product.slug %}">
+    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <img height="1"
+             width="1"
+             class="p-8 rounded-t-lg h-48 w-96"
+             src="{{ product_image }}"
+             alt="{{ product.name | truncatewords:5 }}" />
+        <div class="px-5 pb-5">
+            <a href="#">
+                <h5 class="product_name text-xl font-semibold tracking-tight text-gray-900 dark:text-white product-name-title">
+                    {{ product.name | truncatechars:37 }}
+                </h5>
+            </a>
+            <div class="flex items-center justify-between">
+                <span class="text-3xl font-bold text-gray-900 dark:text-white">${{ product_price|intcomma }}</span>
+            </div>
+        </div>
+    </div>
+</a>

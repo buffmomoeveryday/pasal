@@ -1,0 +1,35 @@
+c{% extends "dashboard/tenant_base.html" %}
+{% block content %}
+    <div class="container mx-auto px-4 py-8">
+        <h2 class="text-2xl font-semibold mb-4">Registered Customers</h2>
+        <div class="overflow-x-auto">
+            <table class="table-auto min-w-full border-collapse border border-gray-300">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2 bg-gray-100 border border-gray-300">First Name</th>
+                        <th class="px-4 py-2 bg-gray-100 border border-gray-300">Last Name</th>
+                        <th class="px-4 py-2 bg-gray-100 border border-gray-300">Email</th>
+                        <th class="px-4 py-2 bg-gray-100 border border-gray-300">Mobile Number</th>
+                        <th class="px-4 py-2 bg-gray-100 border border-gray-300">Address</th>
+                        <th class="px-4 py-2 bg-gray-100 border border-gray-300">Customer Detail</th>
+                        <!-- Add more table headers if needed -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for customer in customers %}
+                        <tr>
+                            <td class="px-4 py-2 border border-gray-300">{{ customer.first_name }}</td>
+                            <td class="px-4 py-2 border border-gray-300">{{ customer.last_name }}</td>
+                            <td class="px-4 py-2 border border-gray-300">{{ customer.email }}</td>
+                            <td class="px-4 py-2 border border-gray-300">{{ customer.mobile_number }}</td>
+                            <td class="px-4 py-2 border border-gray-300">{{ customer.address }}</td>
+                            <td class="px-4 py-2 border border-gray-300 text-red-600 underline">
+                                <a href="{% url "pasal-detail-customers" customer.id %}">View Detail</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}

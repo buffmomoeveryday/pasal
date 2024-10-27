@@ -1,0 +1,70 @@
+{% extends "ecommerce_base.html" %}
+{% block title %}
+    Register
+{% endblock title %}
+{% block content %}
+    <form method="post"
+          action="{% url 'register-customer' %}"
+          class="max-w-md mx-auto mt-8">
+        {% csrf_token %}
+        <!-- Display any form errors -->
+        {% if form.errors %}<p class="text-red-500">{{ form.errors }}</p>{% endif %}
+        <!-- First Name -->
+        <div class="mb-4">
+            <label for="id_first_name"
+                   class="block text-gray-700 text-sm font-bold mb-2">First Name:</label>
+            <input type="text"
+                   id="id_first_name"
+                   name="first_name"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <!-- Last Name -->
+        <div class="mb-4">
+            <label for="id_last_name" class="block text-gray-700 text-sm font-bold mb-2">Last Name:</label>
+            <input type="text"
+                   id="id_last_name"
+                   name="last_name"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <!-- Email -->
+        <div class="mb-4">
+            <label for="id_email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+            <input type="email"
+                   id="id_email"
+                   name="email"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <!-- Password -->
+        <div class="mb-4">
+            <label for="id_password" class="block text-gray-700 text-sm font-bold mb-2">Password:</label>
+            <input type="password"
+                   id="id_password"
+                   name="password"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <!-- Mobile Number -->
+        <div class="mb-4">
+            <label for="id_mobile_number"
+                   class="block text-gray-700 text-sm font-bold mb-2">Mobile Number:</label>
+            <input type="tel"
+                   id="id_mobile_number"
+                   name="mobile_number"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <!-- Address -->
+        <div class="mb-4">
+            <label for="id_address" class="block text-gray-700 text-sm font-bold mb-2">Address:</label>
+            <input type="text"
+                   id="id_address"
+                   name="address"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <!-- Submit Button -->
+        <div class="flex items-center justify-center">
+            <button type="submit"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Submit
+            </button>
+        </div>
+    </form>
+{% endblock content %}

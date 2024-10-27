@@ -1,0 +1,124 @@
+{% extends "dashboard/tenant_base.html" %}
+{% block content %}
+    <div class="container mx-auto py-8">
+        <h1 class="text-3xl font-bold mb-4">
+            List of Employees <span>
+            {% if request.employee.is_owner %}
+                <button data-modal-target="Create Employee"
+                        data-modal-toggle="Create Employee"
+                        class="block text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                        type="button">+ Create Employee</button>
+            {% endif %}
+        </span>
+    </h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {% for employee in all_employees %}
+            <div class="bg-white shadow-md rounded-lg p-4">
+                <a href="{% url 'edit-employee' employee.id %}" class="cursor-pointer">
+                    <h2 class="text-lg font-bold">{{ employee.user.get_full_name }}</h2>
+                    <p class="text-gray-600">{{ employee.user.email }}</p>
+                </a>
+                {% if employee.is_owner %}
+                    <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs">Owner</span>
+                {% else %}
+                    <span class="bg-blue-500 text-white p x-2 py-1 rounded-full text-xs">Employee</span>
+                {% endif %}
+                {% if request.employee.is_owner %}
+                    <a hx-get="{% url 'delete-employee' employee.id %}"
+                       hx-confirm="Delete Employee?"
+                       class="text-red-600 underline cursor-pointer">Delete</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- Cretate Main modal -->
+<!-- Modal toggle -->
+<div id="Create Employee"
+     tabindex="-1"
+     aria-hidden="true"
+     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Create New Product</h3>
+                <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-toggle="Create Employee">
+                    <svg class="w-3 h-3"
+                         aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg"
+                         fill="none"
+                         viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                 role="alert">
+                <span class="font-medium" id="error"></span>
+            </div>
+            <!-- Modal body -->
+            <form hx-post="{% url "create-employees" %}"
+                  hx-target="#error"
+                  hx-swap="innerHTML"
+                  class="p-4 md:p-5">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                    <input type="email"
+                           name="email"
+                           id="email"
+                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="mb-4">
+                    <label for="first_name" class="block text-gray-700 text-sm font-bold mb-2">First Name</label>
+                    <input type="text"
+                           name="first_name"
+                           id="first_name"
+                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="mb-4">
+                    <label for="last_name" class="block text-gray-700 text-sm font-bold mb-2">Last Name</label>
+                    <input type="text"
+                           name="last_name"
+                           id="last_name"
+                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                    <input type="password"
+                           name="password"
+                           id="password"
+                           _="on change send password_changed to #button then log my.value"
+                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="mb-6">
+                    <label for="password_confirm"
+                           class="block text-gray-700 text-sm font-bold mb-2">Confirm Password</label>
+                    <input type="password"
+                           name="password_confirm"
+                           id="password_confirm"
+                           _="on change send password_confirm_changed to #button then log my.value"
+                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="flex items-center justify-between">
+                    <button type="submit"
+                            id="button"
+                            _="on password_changed or password_confirm_changed if #password.value is not equal to #password_confirm.value add @disabled to me else remove @disabled from #button"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Create Employee
+                    </button>
+                </div>
+            </form>
+            <div id="edit"></div>
+        </div>
+    </div>
+</div>
+<!-- Edit Main modal -->
+<!-- Modal toggle -->
+<div id="edit_employee"></div>
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends "ecommerce_base.html" %}
+{% block title %}
+    {{ tenant | capfirst }}
+{% endblock title %}
+{% block content %}
+    <div hx-boost="false">
+        {% if image_with_text %}
+            {% include "partials/ecommerce_image_with_text.html" %}
+        {% endif %}
+        {% include "partials/ecommerce_featured_products.html" %}
+    </div>
+{% endblock content %}

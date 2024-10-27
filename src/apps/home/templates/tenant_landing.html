@@ -1,0 +1,116 @@
+{% extends "tenant_landing_base.html" %}
+{% block content %}
+    <!-- Hero Section -->
+    <section class="bg-white dark:bg-gray-900">
+        <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+            <div class="mr-auto place-self-center lg:col-span-7">
+                <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+                    Build Your Ecommerce Empire with Ease
+                </h1>
+                <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+                    From storefront design to secure checkout, our platform simplifies the process of creating and managing your online store.
+                </p>
+                <a href="{% url 'pasal-register-tenant' %}"
+                   class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:ring-pink-300 dark:focus:ring-pink-900">
+                    Get Started
+                    <svg class="w-5 h-5 ml-2 -mr-1"
+                         fill="currentColor"
+                         viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd">
+                        </path>
+                    </svg>
+                </a>
+                <a href="#"
+                   class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                    Speak to Sales
+                </a>
+            </div>
+            <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+                <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png"
+                     alt="mockup">
+            </div>
+        </div>
+    </section>
+    <!-- Features Section -->
+    <section class="bg-white dark:bg-gray-900">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+            <div class="max-w-screen-md mb-8 lg:mb-16">
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+                    Your All-in-One Ecommerce Solution
+                </h2>
+                <p class="text-gray-500 sm:text-xl dark:text-gray-400">
+                    Whether you're just starting out or expanding your online business, our platform has everything you need to succeed in the competitive world of ecommerce.
+                </p>
+            </div>
+            <div class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0"
+                 id="features">
+                <!-- Replace the feature descriptions with ecommerce-related content -->
+                <div>
+                    <div class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-pink-100 lg:h-12 lg:w-12 dark:bg-pink-900">
+                        <!-- Replace the icon with an ecommerce-related icon -->
+                        <svg class="w-5 h-5 text-pink-600 lg:w-6 lg:h-6 dark:text-pink-300"
+                             fill="currentColor"
+                             viewBox="0 0 20 20"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <!-- Replace the icon path with an ecommerce-related icon -->
+                        </svg>
+                    </div>
+                    <h3 class="mb-2 text-xl font-bold dark:text-white">Storefront Design</h3>
+                    <p class="text-gray-500 dark:text-gray-400">
+                        Create a visually stunning online store that reflects your brand identity and captures the attention of potential customers.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-pink-100 lg:h-12 lg:w-12 dark:bg-pink-900">
+                        <!-- Replace the icon with an ecommerce-related icon -->
+                        <svg class="w-5 h-5 text-pink-600 lg:w-6 lg:h-6 dark:text-pink-300"
+                             fill="currentColor"
+                             viewBox="0 0 20 20"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <!-- Replace the icon path with an ecommerce-related icon -->
+                        </svg>
+                    </div>
+                    <h3 class="mb-2 text-xl font-bold dark:text-white">Secure Payments</h3>
+                    <p class="text-gray-500 dark:text-gray-400">Take Secure Online Payments from the customers</p>
+                </div>
+                <!-- Repeat the above pattern for other features -->
+                <div>
+                    <div class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-pink-100 lg:h-12 lg:w-12 dark:bg-pink-900">
+                        <!-- Replace the icon with an ecommerce-related icon -->
+                        <svg class="w-5 h-5 text-pink-600 lg:w-6 lg:h-6 dark:text-pink-300"
+                             fill="currentColor"
+                             viewBox="0 0 20 20"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <!-- Replace the icon path with an ecommerce-related icon -->
+                        </svg>
+                    </div>
+                    <h3 class="mb-2 text-xl font-bold dark:text-white">Order Management</h3>
+                    <p class="text-gray-500 dark:text-gray-400">Manage your orders</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Call to Action -->
+    <section class="bg-white dark:bg-gray-900">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+            <div class="mx-auto max-w-screen-sm text-center">
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold leading-tight text-gray-900 dark:text-white">
+                    Ready to Launch Your Online Store?
+                </h2>
+                <p class="mb-6 font-light text-gray-500 dark:text-gray-400 md:text-lg">Start your ecommerce journey today</p>
+                <a href="{% url "pasal-register-tenant" %}"
+                   class="text-white bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-pink-600 dark:hover:bg-pink-700 focus:outline-none dark:focus:ring-pink-800">Start</a>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    {% include "partials/footer.html" %}
+    {% block script %}
+        <script>
+            document.getElementById('nav-toggle').onclick = function () {
+                document.getElementById('nav-content').classList.toggle('hidden');
+            };
+        </script>
+    {% endblock script %}
+{% endblock content %}

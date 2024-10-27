@@ -1,0 +1,101 @@
+{% extends "dashboard/tenant_base.html" %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <section class="bg-white dark:bg-gray-900">
+            <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+                <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add a new product</h2>
+                <form action="#">
+                    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                        <div class="sm:col-span-3">
+                            <label for="name"
+                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                {{ form.name.label }}
+                            </label>
+                            {% render_field form.name type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" %}
+                        </div>
+                        <div class="w-full">
+                            <label for="brand"
+                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                {{ form.price.label }}
+                            </label>
+                            {% render_field form.price class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" min="1" %}
+                        </div>
+                        <div class="w-full">
+                            <label for="price"
+                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                {{ form.cost_price.label }}
+                            </label>
+                            {% render_field form.cost_price class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="2999" min="1" %}
+                        </div>
+                        <div>
+                            <label for="category"
+                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                {{ form.category.label }}
+                            </label>
+                            {% render_field form.category name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" %}
+                        </div>
+                        <div>
+                            <label for="item-weight"
+                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                {{ form.stock_quantity.label }}
+                            </label>
+                            {% render_field form.stock_quantity class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" min="1" %}
+                        </div>
+                        <div class="sm:col-span-1">
+                            <label for="description"
+                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                {{ form.discount.label }}
+                            </label>
+                            {% render_field form.discount class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" min="0" max="100" %}
+                        </div>
+                        <div class="sm:col-span-1">
+                            <label for="description"
+                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                {{ form.images.label }}
+                            </label>
+                            {% render_field form.images name="images" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" %}
+                        </div>
+                    </div>
+                    <label for="description"
+                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        {{ form.description.label }}
+                    </label>
+                    {% render_field form.description class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" %}
+                    <br>
+                    <button type="submit"
+                            class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Add product
+                    </button>
+                    <br>
+                </form>
+                {% comment %} button {% endcomment %}
+                <div class="flex">
+                    <button hx-boost="false"
+                            data-modal-target="create_product-modal"
+                            data-modal-toggle="create_product-modal"
+                            class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            type="button">Add Image</button>
+                    &nbsp
+                    <button hx-boost="false"
+                            data-modal-target="create_category-modal"
+                            data-modal-toggle="create_category-modal"
+                            class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            type="button">Add Category</button>
+                </div>
+            </div>
+        </section>
+    </form>
+    {% include "dashboard/partials/tenant_create_product_image.html" %}
+    {% include "dashboard/partials/tenant_create_product_category.html" %}
+{% endblock content %}
+{% block script %}
+    <script>
+    $(document).ready(function() {
+    $('#id_category').select2();
+    $('#id_images').select2();
+});
+    </script>
+{% endblock script %}
