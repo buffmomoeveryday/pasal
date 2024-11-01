@@ -23,6 +23,3 @@ Create the initial migrations
 make migrations
 
 
-
-# order status links
-https://dribbble.com/shots/20647360-Order-details
