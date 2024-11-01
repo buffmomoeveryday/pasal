@@ -1,4 +1,4 @@
-# Pani
+# Pasal
 BCA fifth semester project for Management Information System based on blanxer.com, supports multitenancy, a dashboard, and stripe for payment
 
 
